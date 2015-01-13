@@ -25,7 +25,7 @@ $(function(){
 //     console.log(p_to_l);
     stay();
 
-    var $moving_li = false;
+    var $moving_li = null;
 
     $("li").mousedown(function(event){
         var mouseX = event.pageX;
@@ -89,14 +89,16 @@ $(function(){
     $(document).mouseup(function(event){
 
         if($moving_li){
+            console.log("mouse relieved!");
+            console.log("empty_pos:", empty_pos[0], empty_pos[1]);
             $moving_li.css({ "z-index": 1, left: empty_pos[0]+"px", top: empty_pos[1]+"px"});
 
             p_to_l[empty_pos] = $moving_li.attr("id");
-            $moving_li = false;
+            $moving_li = null;
             // console.log(p_to_l);
 
         } else {
-            $moving_li = false;
+            // $moving_li = false;
             console.log("something is wrong");
         }
     });
@@ -109,7 +111,7 @@ $(function(){
         var x2= pos2[0];
         var y2= pos2[1];
 
-        return ((x2< x1) && (x1 < x2+200) && (y2< y1) && (y1 < y2+ 200));
+        return ((x2< x1) && (x1 < x2+100) && (y2< y1) && (y1 < y2+ 100));
     }
 
     function eq(a1, a2){
